@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <script src="p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var r;
+    var g;
+    var b;
+    var x = w/2;
+    var y = h/2;
+    var x1 = w/2;
+    var y1 = h/2;
+    var x2 = w/2;
+    var y2 = h/2;
+      function setup(){
+        createCanvas(w,h);
+      }
+      function draw(){
+        r = random(100,156);
+        g = random(100,156);
+        b = random(100,156);
+        //ther are 4 values of a ellipse, the starting position of X, the starting postition of y, The radius of X and The radius of Y
+        strokeWeight(1);
+        var c = random(-10,10);
+        var a = random(-10,10);
+        var c1 = random(-10,10);
+        var a1 = random(-10,10);
+        var c2 = random(-10,10);
+        var a2 = random(-10,10);
+        x += c;
+        y += a;
+        x1 += c1;
+        y1 += a1;
+        x2 += c2;
+        y2 += a2;
+        rect(x,y,30,30);
+        strokeWeight(1);
+        ellipse(x1 ,y1,30,30);
+        line(x2,y2,w/2,h/2)
+  
+        
+      }
+    </script>
+  </body>
+</html>
+fill(r,g,b);
+stroke(r,g,b);
