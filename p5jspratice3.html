@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <script src="p5.min.js"></script>
+    <style>
+      body{
+        overflow = hidden;
+        margin = 0;
+        padding = 0;
+      }
+      div{
+        width:50px;
+        height:30px;
+      }
+    </style>
+  </head>
+  <body>
+    Time for change some colors!(values 0-255)
+    Red:<input type="number" id="red" min="0" max="255">
+    Green:<input type="number" id="green" min="0" max="255">
+    Blue:<input type="number" id="blue" min="0" max="255">
+    <button onclick="Color()">change color</button>
+    *Press e for eraser, b for the color: black.
+    <div id="Test"></div>
+    <p id="show"></p>
+    <hr>
+    <script>
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var weight = 3;
+    var r = 0;
+    var g = 0;
+    var b = 0;
+      function setup(){
+        createCanvas(w,h);
+        background('white');
+      }
+      function draw(){
+        if(mouseIsPressed){
+        strokeWeight(weight);
+        line(pmouseX,pmouseY,mouseX,mouseY);
+        }
+        if(keyCode == "69"){
+        fill('white');
+        strokeWeight(0);
+        ellipse(mouseX,mouseY,100,100)
+      }
+      }
+      function Color(){
+        var r = document.getElementById('red').value;
+        document.getElementById('red').value = "";
+        var g = document.getElementById('green').value;
+        document.getElementById('green').value = "";
+        var b = document.getElementById('blue').value;
+        document.getElementById('blue').value = "";
+        stroke(color(r,g,b));
+        document.getElementById('Test').style.backgroundColor= color(r,g,b);
+         document.getElementById('show').innerHTML = "the value you had choose are: " + r + ", " + g + ", " + b;
+      }
+      function keyPressed(){
+         if(keyCode == "66"){
+        stroke('black');
+      }
+      }
+    </script>
+  </body>
+</html>
