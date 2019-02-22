@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script src="p5.min.js"></script>
+    <style>
+      body{
+        margin:0;
+        padding:0;
+        overflow:hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var posX = w/2-50;
+      var posY = h/2-50;
+      function setup(){
+         createCanvas(w,h);
+         //randomize starting position
+         posX = random(w-100);
+         posY = random(h-100);
+      }
+      function draw(){
+        //background, the color of white
+        background(255);
+        //remove the black stroke
+        strokeWeight(0);
+        //color of green
+        fill(color('#a7d694'));
+        //rectange function, x position, y position, width, height, and 4 border radius.
+        rect(posX,posY,100,100,10,100,10,100);
+        //press w, then it will go up and wont go over if the value is equal or less than o
+        if((keyIsDown(87)) && (posY > 0)){
+          posY -=10;
+        }
+        //press s, then it will go down and wont go over if the valye is greater than the total height minus the height of the shape
+         if((keyIsDown(83)) && (posY < h-100)){
+          posY +=10;
+        }
+        //press a, then it will go left and wont go over if the value is equal or less than 0
+        if((keyIsDown(65)) && (posX > 0)){
+          posX -=10;
+        }
+        //press d, then it will go down and wont go over if the valye is greater than the total width minus the width of the shape
+        if((keyIsDown(68)) && (posX < w-100)){
+          posX +=10;
+        }
+      }
+    </script>
+  </body>
+</html>
