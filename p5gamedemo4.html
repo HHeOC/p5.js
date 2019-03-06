@@ -28,13 +28,14 @@
       time += 0.01;
       document.getElementById('showTime').innerHTML = time.toFixed(2);
        time.html(minutes + ":" + seconds);
-      if(time == 5){
-        noLoop();
-        window.alert("you had won!")
-      }
+      
+
     })
     function setup(){
        createCanvas(w,h);
+      if(time >= 100){
+        Redball.kill;
+      }
       
     }
     function draw(){
@@ -67,6 +68,10 @@
       }
        document.getElementById('showXY').innerHTML = this.x + " , " + this.y;
       };
+      this.kill = function(){
+        noLoop();
+        window.alert('You lost')
+      }
     }
      function Blueball(){
       this.x = w/2;//when you use "this." you are refering to the ball
