@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <script src="p5.min.js"></script>
+        <style>
+      body{
+        margin:0;
+        padding:0;
+        overflow:hidden;
+      }
+       li{
+        position:fixed;
+      }
+    </style>
+  </head>
+  <body>
+<li>
+<h1 id="showXY"></h1>
+<h2 id="showTime"></h2>
+</li>
+  <script>
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  var Redball = new Redball();//I am creating a new obejct globally. Always write it as new, dont use words like special ball, best ball, but new ball
+   var Blueball = new Blueball();
+  var d;
+   var time = 0;
+    setInterval(function(){
+      time += 0.01;
+      document.getElementById('showTime').innerHTML = time.toFixed(2);
+       time.html(minutes + ":" + seconds);
+      if(time == 5){
+        noLoop();
+        window.alert("you had won!")
+      }
+    })
+    function setup(){
+       createCanvas(w,h);
+      
+    }
+    function draw(){
+      background(255);
+      Redball.show();
+      Redball.move();
+      Blueball.show();
+      Blueball.move();
+      Blueball.kill();
+    }
+    function Redball(){
+      this.x = 70;//when you use "this." you are refering to the ball
+      this.y = 70;
+      this.show = function(){
+        fill(color('red'));
+        ellipse(this.x,this.y,100,100);
+      };
+      this.move = function(){
+      if((keyIsDown(68)) && (this.x < w-56)){//Right arrow key
+      this.x += 10;
+      }
+      if((keyIsDown(65)) && (this.x >56)){//Left arrow key
+      this.x -= 10;
+      }
+      if((keyIsDown(87)) && (this.y > 56)){//up arrow key
+      this.y -= 10;
+      }
+      if((keyIsDown(83)) && (this.y < h-56)){//down arrow key
+      this.y += 10;
+      }
+       document.getElementById('showXY').innerHTML = this.x + " , " + this.y;
+      };
+    }
+     function Blueball(){
+      this.x = w/2;//when you use "this." you are refering to the ball
+      this.y = h/2;
+      this.show = function(){
+        fill(color('blue'));
+        ellipse(this.x,this.y,300,300);
+      };
+      this.move = function(){
+        var c = random(-70,70);
+        var a = random(-70,70);
+        this.x += c;
+        this.y += a;
+    if(this.x > w-100) {
+          this.x -= 50;
+        }
+      if(this.x < 100){
+        this.x += 50;
+      }
+      if(this.y > h-100){
+        this.y -= 50;
+      }
+      if(this.y < 100){
+        this.y += 50;
+      }
+      };
+      this.kill = function(){
+        d=dist(this.x,this.y,Redball.x,Redball.y)//calculating the distance of the X and Y coordinate between two object
+        if(d < 50){
+          noLoop();//stop the game, stop the loop
+          window.alert("You have surivied " + time.toFixed(2) + " seconds");
+          location.reload();
+        }
+      }
+    }
+  </script>
+
+  </body>
+</html>
